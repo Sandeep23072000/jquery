@@ -3,14 +3,13 @@ $(document).ready(function () {
     event.preventDefault();
     var heading = $(".heading").val();
 
-    console.log(heading);
     $("main").append("<section><h1>" + heading + "</h1></section>");
-    // $("#exampleModal").modal('toggle');
+    console.log(heading);
 
     $("option").remove();
     $("main section h1").each(function (index, value) {
-      $(".subheadinglist").append("<option value=" + (index + 1) + ">" + $(this).text() + "</option>");
-
+      $(".headinglist").append("<option value=" + (index + 1) + ">" + $(this).text() + "</option>");
+      // $("#exampleModal").modal('toggle');
 
     });
 
@@ -19,14 +18,23 @@ $(document).ready(function () {
   $(".form2").submit(function (event) {
     event.preventDefault();
     var subheading = $(".subheading").val();
-    // $("").remove();
-    var $option = $(this).find('option:selected');
-    var subheadid = $option.val();
-    console.log(subheading);
-    $("section:value").append("<div><h4>" + subheading + "</h4></div>");
-   
+    if (subheading == "") {
+      alert("This field is required")
+      return false;
+    }
+    else {
+      var head = $(".headinglist option:selected").val();
+      $("main section:nth-child(" + head + ") ").append("<div><h3>" + subheading + "</h3></div>");
+      console.log(subheading);
+    }
+    $("main div h3").each(function (index, value) {
+      $(".subheadinglist").append("<option value=" + (index + 1) + ">" + $(this).text() + "</option>");
+      // $("option").remove();
+
+      // $(".listsubheading").append("<option value=" + (index + 1) +">" + $(this).text() + "</option>")
+    });
+
   });
-});
-  
-  
-  
+});                                                               
+
+
